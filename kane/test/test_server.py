@@ -10,10 +10,30 @@ class TestServer(unittest.TestCase):
         wenjuan = Server()
         wenjuan.get_name("kane")
         act_name = wenjuan.name
+        act_desc = wenjuan.name_desc
         exp_name = "kane"
-        eorry_msg = "问卷中的值：%s 与期望的值：%s 不一致" % (act_name, exp_name)
+        exp_desc = None
+        eorry_msg_1 = "问卷中的值：%s 与期望的值：%s 不一致" % (act_name, exp_name)
+        eorry_msg_2 = "问卷中的描述值：%s 与期望的值：%s 不一致" % (act_desc, exp_desc)
         self.assertEqual(exp_name, act_name,
-                         eorry_msg)
+                         eorry_msg_1)
+        self.assertEqual(exp_desc, act_desc,
+                        eorry_msg_2)
+
+    def test_get_name_by_desc(self):
+        wenjuan = Server()
+        wenjuan.get_name("kane","name")
+        act_name = wenjuan.name
+        act_desc = wenjuan.name_desc
+        exp_name = "kane"
+        exp_desc = "name"
+        eorry_msg_1 = "问卷中的值：%s 与期望的值：%s 不一致" % (act_name, exp_name)
+        eorry_msg_2 = "问卷中的描述值：%s 与期望的值：%s 不一致" % (act_desc, exp_desc)
+        self.assertEqual(exp_name, act_name,
+                         eorry_msg_1)
+        self.assertEqual(exp_desc, act_desc,
+                        eorry_msg_2)
+
 
     def test_get_tel(self):
         wenjuan = Server()
