@@ -1,6 +1,7 @@
 # -*- encoding=utf-8 -*-
 import unittest
 from kane.server.server import Server
+from kane.until.log import error
 
 
 class TestServer(unittest.TestCase):
@@ -13,12 +14,19 @@ class TestServer(unittest.TestCase):
         act_desc = wenjuan.name_desc
         exp_name = "kane"
         exp_desc = None
-        eorry_msg_1 = "问卷中的值：%s 与期望的值：%s 不一致" % (act_name, exp_name)
-        eorry_msg_2 = "问卷中的描述值：%s 与期望的值：%s 不一致" % (act_desc, exp_desc)
-        self.assertEqual(exp_name, act_name,
-                         eorry_msg_1)
-        self.assertEqual(exp_desc, act_desc,
-                        eorry_msg_2)
+
+        fail_lisi = []
+        if act_name != exp_name:
+            eorry_msg_1 = "问卷中的值：%s 与期望的值：%s 不一致" % (act_name, exp_name)
+            fail_lisi.append(eorry_msg_1)
+            error(eorry_msg_1)
+
+        if act_desc != exp_desc:
+            eorry_msg_2 = "问卷中的描述值：%s 与期望的值：%s 不一致" % (act_desc, exp_desc)
+            fail_lisi.append(eorry_msg_2)
+            error(eorry_msg_2)
+
+        self.assertEqual(0,len(fail_lisi),str(fail_lisi))
 
     def test_get_name_by_desc(self):
         wenjuan = Server()
@@ -27,12 +35,18 @@ class TestServer(unittest.TestCase):
         act_desc = wenjuan.name_desc
         exp_name = "kane"
         exp_desc = "name"
-        eorry_msg_1 = "问卷中的值：%s 与期望的值：%s 不一致" % (act_name, exp_name)
-        eorry_msg_2 = "问卷中的描述值：%s 与期望的值：%s 不一致" % (act_desc, exp_desc)
-        self.assertEqual(exp_name, act_name,
-                         eorry_msg_1)
-        self.assertEqual(exp_desc, act_desc,
-                        eorry_msg_2)
+        fail_lisi = []
+        if act_name != exp_name:
+            eorry_msg_1 = "问卷中的值：%s 与期望的值：%s 不一致" % (act_name, exp_name)
+            fail_lisi.append(eorry_msg_1)
+            error(eorry_msg_1)
+
+        if act_desc != exp_desc:
+            eorry_msg_2 = "问卷中的描述值：%s 与期望的值：%s 不一致" % (act_desc, exp_desc)
+            fail_lisi.append(eorry_msg_2)
+            error(eorry_msg_2)
+
+        self.assertEqual(0, len(fail_lisi), str(fail_lisi))
 
 
     def test_get_tel(self):
